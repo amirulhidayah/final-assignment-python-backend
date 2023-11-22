@@ -2,7 +2,7 @@ import os
 import connexion
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
-
+# Baru
 basedir = os.path.abspath(os.path.dirname(__file__))
 
 connex_app = connexion.App(__name__, specification_dir=basedir)
