@@ -1,0 +1,293 @@
+swagger: "2.0"
+info:
+  description: "File API Swagger Milestones"
+  version: "1.0.0"
+  title: "Swagger API Milestones Final Assignment"
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+
+basePath: "/api"
+paths:
+  /milestones:
+    get:
+      operationId: "crud_milestones.get_all"
+      tags:
+        - "Milestones"
+      summary: "Mendapatkan seluruh daftar milestones"
+      description: "Mengambil seluruh data milestones beserta relasi pengajar"
+      responses:
+        200:
+          description: "Berhasil mendapatkan data milestones berdasarkan ID"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Milestone"
+    post:
+      operationId: "crud_milestones.create"
+      tags:
+        - "Milestones"
+      summary: "Menambah milestone"
+      description: "Menambahkan milestone baru"
+      parameters:
+        - name: "milestone"
+          in: "body"
+          description: "Data milestone yang akan ditambahkan"
+          required: true
+          schema:
+            $ref: "#/definitions/MilestoneInput"
+      responses:
+        200:
+          description: "Berhasil menambahkan milestone"
+          schema:
+            $ref: "#/definitions/Milestone"
+        404:
+          description: "Pengajar tidak ditemukan"
+  /milestones/{id}:
+    get:
+      operationId: "crud_milestones.get_single"
+      tags:
+        - "Milestones"
+      summary: "Mendapatkan data milestone"
+      description: "Mendapatkan data milestone berdasarkan ID"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "ID milestone yang dicari"
+          type: "integer"
+          required: true
+      responses:
+        200:
+          description: "Berhasil Mendapatkan data milestone"
+          schema:
+            $ref: "#/definitions/Milestone"
+        404:
+          description: "Milestone tidak ditemukan"
+    put:
+      operationId: "crud_milestones.update"
+      tags:
+        - "Milestones"
+      summary: "Mengupdate milestone"
+      description: "Mengupdate data milestone berdasarkan ID"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "ID milestone yang akan diupdate"
+          type: "integer"
+          required: true
+        - name: "milestone"
+          in: "body"
+          description: "Data milestone yang akan diupdate"
+          required: true
+          schema:
+            $ref: "#/definitions/MilestoneInput"
+      responses:
+        200:
+          description: "Berhasil menambahkan milestone"
+          schema:
+            $ref: "#/definitions/Milestone"
+        404:
+          description: "Milestone atau Pengajar tidak ditemukan"
+    delete:
+      operationId: "crud_milestones.delete"
+      tags:
+        - "Milestones"
+      summary: "Menghapus milestone"
+      description: "Menghapus milestone berdasarkan ID"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "ID milestone yang akan dihapus"
+          type: "integer"
+          required: true
+      responses:
+        200:
+          description: "Data milestone yang dihapus"
+          schema:
+            $ref: "#/definitions/Milestone"
+        404:
+          description: "Milestone tidak ditemukan"
+
+  /pengajar:
+    get:
+      operationId: "crud_pengajar.get_all"
+      tags:
+        - "Pengajar"
+      summary: "Mendapatkan seluruh data pengajar"
+      description: "Mendapatkan seluruh data pengajar"
+      responses:
+        200:
+          description: "Berhasil mendapatkan data milestones"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Pengajar"
+    post:
+      operationId: "crud_pengajar.create"
+      tags:
+        - "Pengajar"
+      summary: "Menambahkan pengajar"
+      description: "Menambahkan data pengajar baru"
+      parameters:
+        - name: "pengajar"
+          in: "body"
+          description: "Data pengajar yang akan ditambahkan"
+          required: true
+          schema:
+            $ref: "#/definitions/PengajarInput"
+      responses:
+        200:
+          description: "Berhasil menambahkan pengajar"
+          schema:
+            $ref: "#/definitions/Pengajar"
+  /pengajar/{id}:
+    get:
+      operationId: "crud_pengajar.get_single"
+      tags:
+        - "Pengajar"
+      summary: "Mendapatkan data pengajar berdasarkan ID"
+      description: "Mendapatkan data pengajar berdasarkan ID"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "ID pengajar yang dicari"
+          type: "integer"
+          required: true
+      responses:
+        200:
+          description: "Berhasil Mendapatkan data pengajar"
+          schema:
+            $ref: "#/definitions/Pengajar"
+        404:
+          description: "Pengajar tidak ditemukan"
+    put:
+      operationId: "crud_pengajar.update"
+      tags:
+        - "Pengajar"
+      summary: "Mengupdate pengajar"
+      description: "Mengupdate data pengajar berdasarkan ID"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "ID pengajar yang akan diupdate"
+          type: "integer"
+          required: true
+        - name: "pengajar"
+          in: "body"
+          description: "Data pengajar yang akan diupdate"
+          required: true
+          schema:
+            $ref: "#/definitions/PengajarInput"
+      responses:
+        200:
+          description: "Berhasil menambahkan pengajar"
+          schema:
+            $ref: "#/definitions/Pengajar"
+        404:
+          description: "Pengajar tidak ditemukan"
+    delete:
+      operationId: "crud_pengajar.delete"
+      tags:
+        - "Pengajar"
+      summary: "Menghapus pengajar"
+      description: "Menghapus pengajar berdasarkan ID"
+      parameters:
+        - name: "id"
+          in: "path"
+          description: "ID pengajar yang akan dihapus"
+          type: "integer"
+          required: true
+      responses:
+        200:
+          description: "Berhasil Mendapatkan data pengajar yang dihapus"
+          schema:
+            $ref: "#/definitions/Pengajar"
+        404:
+          description: "Pengajar tidak ditemukan"
+
+definitions:
+  Milestone:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      pelajaran:
+        type: "string"
+        description: "Nama pelajaran pada milestone"
+      pencapaian:
+        type: "string"
+        description: "Pencapaian yang diperoleh saat mempelajari pelajaran pada milestone"
+      keterangan:
+        type: "string"
+        description: "Penjelasan mengenai milestone"
+      is_complete:
+        type: "boolean"
+        description: "Status menunjukkan apakah milestone telah selesai atau belum"
+      pengajar_id:
+        type: "integer"
+        description: "Pengidentifikasi pengajar yang menyampaikan materi"
+      created_at:
+        type: "string"
+        description: "Timestamp menunjukkan kapan milestone dibuat"
+      updated_at:
+        type: "string"
+        description: "Timestamp menunjukkan kapan milestone terakhir diperbarui"
+
+  MilestoneInput:
+    type: "object"
+    properties:
+      pelajaran:
+        type: "string"
+        description: "Nama pelajaran pada milestone"
+      pencapaian:
+        type: "string"
+        description: "Pencapaian yang diperoleh saat mempelajari pelajaran pada milestone"
+      keterangan:
+        type: "string"
+        description: "Penjelasan mengenai milestone"
+      is_complete:
+        type: "boolean"
+        description: "Status menunjukkan apakah milestone telah selesai atau belum"
+      pengajar_id:
+        type: "integer"
+        description: "Pengidentifikasi pengajar yang menyampaikan materi"
+
+  Pengajar:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      nama:
+        type: "string"
+        description: "Nama pengajar"
+      keahlian:
+        type: "string"
+        description: "Bidang keahlian pengajar"
+      email:
+        type: "string"
+        description: "Alamat email pengajar"
+      created_at:
+        type: "string"
+        description: "Timestamp menunjukkan kapan pengajar dibuat"
+      updated_at:
+        type: "string"
+        description: "Timestamp menunjukkan kapan pengajar terakhir diperbarui"
+      milestones:
+        type: "array"
+        items:
+          $ref: "#/definitions/Milestone"
+
+  PengajarInput:
+    type: "object"
+    properties:
+      nama:
+        type: "string"
+        description: "Nama Pengajar"
+      keahlian:
+        type: "string"
+        description: "Bidang keahlian Pengajar"
+      email:
+        type: "string"
+        description: "Alamat email pengajar"
+
