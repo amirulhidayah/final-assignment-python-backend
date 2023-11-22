@@ -33,7 +33,6 @@ with connex_app.app.app_context():
         )
         db.session.add(pengajar)
 
-    # Seed Milestones
     for milestone in MILESTONES:
         pengajar = Pengajar.query.filter(Pengajar.id == milestone['pengajar_id']).first()
         m = Milestones(

@@ -33,7 +33,6 @@ def create():
         )
         db.session.add(milestone)
         db.session.commit()
-        milestones_schema = MilestonesSchema(exclude=['pengajar'])
         data = milestones_schema.dump(milestone)
         return data
     
